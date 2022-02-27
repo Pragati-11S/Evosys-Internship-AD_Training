@@ -3610,7 +3610,27 @@ USING(CustomerID)
 GROUP BY ContactName;
 
 --2. Find suppliers who sell more than one product to Northwind Trader.
-
+SELECT 
+    s.SupplierID, s.CompanyName, pq.quantity 
+FROM 
+    Suppliers s, (SELECT 
+                      SupplierID, COUNT(ProductID) AS quantity 
+                  FROM 
+                      Products 
+                  GROUP BY 
+                      SupplierID) pq
+WHERE 
+    s.SupplierID = pq.SuppliSELECT 
+    s.SupplierID, s.CompanyName, pq.quantity 
+FROM 
+    Suppliers s, (SELECT 
+                      SupplierID, COUNT(ProductID) AS quantity 
+                  FROM 
+                      Products 
+                  GROUP BY 
+                      SupplierID) pq
+WHERE 
+    s.SupplierID = pq.SupplierID AND quantity > 1;erID AND quantity > 1;
 
 --3. Create a function to get latest order date for entered customer_id.
 SET SERVEROUTPUT ON;
@@ -3724,6 +3744,16 @@ ON p.ProductID = o.ProductID
 ORDER BY o.OrderID;
 
 --13. Sales by Category: For each category, we get the list of products sold and the total sales amount.
+SELECT 
+    c.CategoryID, c.CategoryName, p.ProductName, SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalSales
+FROM 
+    Categories c, Products p, OrderDetails od 
+WHERE 
+    c.CategoryID = p.CategoryID AND od.ProductID = p.ProductID 
+GROUP BY 
+    c.CategoryID, c.CategoryName, p.ProductName
+ORDER BY 
+    c.CategoryID, p.ProductName;
 
 --14. Create below views:
 --14.1. vwProducts_Above_Average_Price
