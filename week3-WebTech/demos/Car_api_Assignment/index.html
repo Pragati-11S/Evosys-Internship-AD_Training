@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <title>Car</title>
+</head>
+<link rel="stylesheet" href="/style.css">
+
+<body>
+  <div class="mydiv" id="myDivAdd">
+    <form id="myFormAdd" name="myForm" class="container card">
+      <label>Car Number:</label>
+      <input class="forminput" type="text" id="carnoAdd" required autofocus>
+      <label>Car Name:</label>
+      <input class="forminput" type="text" id="carnameAdd" required>
+      <label>Unit Price:</label>
+      <input class="forminput" type="text" id="priceAdd" required>
+      <button type="submit" id="submitAdd" class="btn">Add</button>
+    </form>
+  </div>
+
+  <div class="mydiv" id="myDivUpdate" hidden>
+    <form id="myFormUpdate" name="myForm" class="container card">
+      <label>Car Number:</label>
+      <input class="forminput" type="text" id="carnoUpdate" required readonly>
+      <label>Car Name:</label>
+      <input class="forminput" type="text" id="carnameUpdate" required>
+      <label>Unit Price:</label>
+      <input class="forminput" type="text" id="priceUpdate" required>
+      <button type="submit" id="submitUpate" class="btn">Update</button>
+    </form>
+  </div>
+  <br>
+  <div id="mytableDiv" hidden>
+  <table class="table" id="myTable">
+    <thead>
+      <tr class="table-back">
+        <th nowrap>Select</th>
+        <th nowrap>Car ID</th>
+        <th nowrap>Car Name</th>
+        <th nowrap>Unit Price</th>
+        <th nowrap>Action</th>
+        <th nowrap>Action</th>
+      </tr>
+    </thead>
+    <tbody id="myTbody">
+
+    </tbody>
+  </table>
+</div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="jquery.js"></script>
+
+</body>
+
+</html>

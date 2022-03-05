@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <div>
+        <label for="pid">PID</label><input type="text" name="pid" id="pid">
+        <label for="pname">Pname</label><input type="text" name="pname" id="pname">
+        <label for="unit_price">Unit Price</label><input type="text" name="unit_price" id="unit_price">
+        <button id="addProduct"> Add To Local Storage</button>
+        <button id="addToSession"> Add To Session Storage</button>
+    </div>
+    <div>
+        <button id="getProducts"> Show All Products From Local Storage </button>
+        <ul id="products"></ul>
+    </div>
+    <div>
+        <button id="getfromSession"> Show All Products From session Storage </button>
+        <ul id="session_products"></ul>
+    </div>
+    <!--External js  -->
+    <script src="jquery-3.6.0.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

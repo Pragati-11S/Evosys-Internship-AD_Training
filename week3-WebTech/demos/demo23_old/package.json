@@ -1,0 +1,17 @@
+{
+  "name": "demo23",
+  "version": "1.0.0",
+  "description": "Create api to get a product details\r pid,pname,unit_price\r 1. index.html->UI\r     Button : Get all PRoducts\r     Button : Get Producut by pid\r 2. server.js->\r     http://localhost:3000/\r 3. app-route.js-> \r     1.get       http://localhost:3000/app/products \r     2.get       http://localhost:3000/app/products/:pid\r     3.put       http://localhost:3000/app/products/update/:pid/:unit_price\r     4.delete    http://localhost:3000/app/products/delete/:pid\r     5.post      http://localhost:3000/app/products/add\r 4. product.js",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
