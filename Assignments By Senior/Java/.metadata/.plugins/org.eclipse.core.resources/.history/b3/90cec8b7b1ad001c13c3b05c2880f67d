@@ -1,0 +1,45 @@
+package com.mastek.assignment;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class PersonApp {
+	public static void main(String[] args) {
+		try {
+			Connection conn=MyConnection.getConnection();
+			FileInputStream fis=new FileInputStream("\"D:\\Evosys\\Senior Assignments\\Java\\JDBC_Assignment1\\src\\com\\mastek\\assignment\\employee.csv");
+			Scanner sc=new Scanner(fis);
+			String query="INSERT INTO employee VALUES(?,?,to_date(?,'DD-MM-YYYY'),?)";
+			PreparedStatement pst=conn.prepareStatement(query);
+			
+			while(sc.hasNext()) {
+				String [] data=(sc.nextLine()).split(",");
+				pst.setString(1,data[0]);
+				pst.setString(2,data[1]);
+				pst.setString(3,data[2]);
+				pst.setString(4,data[3]);
+				
+				pst.addBatch();
+			}
+			pst.executeBatch();
+			sc.close();
+			fis.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			System.out.println(e.getErrorCode()+" "+e.getMessage());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+	
+
+}

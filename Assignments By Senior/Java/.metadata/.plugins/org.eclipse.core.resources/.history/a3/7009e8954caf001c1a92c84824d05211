@@ -1,0 +1,31 @@
+package com.mastek.assignment.demo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.mastek.assignment.database.MyConnection;
+import com.mastek.assignment.database.QueryUtil;
+import com.mastek.assignment.model.Student;
+
+public class MenuApp {
+	MyConnection connection1 = new MyConnection();
+	public void insertRecord(Student student) throws SQLException{
+		try(Connection connection = connection1.getConnection();
+				PreparedStatement pst = connection.prepareStatement(QueryUtil.insertRecordQuery());
+				) {
+			pst.setString(1, student.getStudentName());
+			pst.setString(2, student.getEmail());
+			pst.setString(3, student.getAdmissionDate());
+			pst.setString(4, student.getStudyingClass());
+			pst.setString(5, student.getCity());
+			
+			int rows = pst.executeUpdate();
+			if(rows>0) {
+				System.out.println("Record Inserted successfully");
+			} else {
+				System.out.println("Record Insertion failed..");
+			}
+		}
+	}
+}

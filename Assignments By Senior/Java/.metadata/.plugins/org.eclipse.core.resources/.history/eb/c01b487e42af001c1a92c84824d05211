@@ -1,0 +1,10 @@
+package com.mastek.assignment.model;
+
+public class Student {
+	private int studentID;
+	private String studentName;
+	private String email;
+	private String admissionDate;
+	private String studyingClass;
+	private String city;
+}

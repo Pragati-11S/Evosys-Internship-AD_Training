@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Employee Details Form</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+<div class="mydiv">
+<div class="container formdiv card">
+  <h2>Employee Details Form</h2>
+</div>
+<form id="myForm" name="myForm" class="container card">
+  <p>
+    <label>Employee Name</label>
+    <input class="forminput" type="text" id="emp_name" required></p>
+  <p>
+    <label>Email</label>
+    <input class="forminput" type="email" id="email" pattern="[^ @]*@[^ @]*" required></p>
+  <p>
+    <label>Phone Number</label>
+    <input class="forminput" type="text" id="phone" maxlength="10" required></p>
+  <p>
+    <label>Joining Date</label>
+    <input class="forminput" type="date" id="joining" required></p>
+  <p>
+    <label>Salary</label>
+    <input class="forminput" type="text" id="salary" name="salary" required></p>
+  <p>
+    <label for="dept">Department</label>
+    <select name="dept" id="dept" required>
+      <option value="AD">AD</option>
+      <option value="HR">HR</option>
+      <option value="HCM">HCM</option>
+      <option value="Innovation">Innvovation</option>
+      <option value="TechERP">TechERP</option>
+    </select>
+  </p>
+  <P><button type="submit" class="btn" onclick="return validateForm()">Submit</button></P>
+<closeform></closeform></form></div>
+<br>
+<table class="table" id="myTable">
+<thead>
+<tr class="table-back">      
+<th nowrap>Employee Name</th>    
+<th nowrap>Email</th>    
+<th nowrap>Phone Number</th>    
+<th nowrap>Joining Date</th>  
+<th nowrap>Salary</th>      
+<th nowrap>Department</th>    
+</tr>
+</thead>
+<tbody >
+</tbody>
+</table>
+<script>
+  function validateForm() {
+    var z = document.forms["myForm"]["salary"].value;
+    if(!/^[0-9]+$/.test(z)) {
+    alert("Please only enter numeric characters only for salary")
+  }
+  else {
+    var emp_name=$('#emp_name').val();
+    var email=$('#email').val();
+    var phone=$('#phone').val();
+    var joining=$('#joining').val();
+    var salary=$('#salary').val();
+    var dept=$('#dept').val();
+    if(emp_name!="" && email!="" && phone !="" && joining !="" && salary !="" && dept !=""){
+    $('#myTable tbody').append('<tr class="child"><td>'+emp_name+'</td><td>'+email+'</td><td>' +phone+'</td><td>' +joining+'</td><td>' +salary+'</td><td>' +dept+'</td>');
+    }
+    document.getElementById("myForm").reset(); 
+    }
+  }
+</script>
+</body>
+</html>

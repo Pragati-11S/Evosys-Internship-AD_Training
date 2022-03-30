@@ -1,0 +1,26 @@
+Tables:
+
+Department (deptid(pk) number, name varchar2)
+Employee (empid(pk) number, name varchar2, email varchar2,
+mobile_no varchar2, joining_date date,city varchar2, salary number, department_id (FK))
+
+- Create above tables and enter atleast 5 dummy data in department table and 10-15 data in employee table
+
+SQL:
+
+1. Write a query to list all the employees with their department name.
+2. Write a query to display employees with salary more than <take any number>.
+3. Write a query to display employees joined after entered <take any date>.
+
+4. create new table employee1 with column employee_name, employee_mobile_no,email, copy data from employee table.
+5. add address column in employee1 table.
+6. modify  employee_mobile_no column of employee1 table and change data type.
+
+PL SQL:
+1. Write a procedure to add department with output variable "result".
+2. Write a procedure to add Employee with output variable "result".
+3. Write a procedure to update Employees department (Input -> empid, department_name)
+	in case if department not present throw appropriate error.
+4. Write a function that returns Employee Department name based on emp id.
+5. Write a function that returns Employee joining date in (10-Mar-2021) format based on emp_id 
+

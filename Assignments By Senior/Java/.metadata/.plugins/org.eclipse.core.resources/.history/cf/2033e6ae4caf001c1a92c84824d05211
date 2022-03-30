@@ -1,0 +1,10 @@
+package com.mastek.assignment.database;
+
+public class QueryUtil {
+	public static String insertRecordQuery() {
+		String sql="INSERT INTO Student(StudentName, Email, AdmissionDate, StudyingClass, City) VALUES(?,?,to_date(?,'dd-mm-yyyy'),?,?)";
+//		String sqlQuery="INSERT INTO Student(StudentName, Email, AdmissionDate, StudyingClass, City) VALUES('Raj','raj@gmail.com',TO_DATE('1999-05-29','yyyy-mm-dd'),'Class-8','Jaipur')";
+		
+		return sql;
+	}
+}

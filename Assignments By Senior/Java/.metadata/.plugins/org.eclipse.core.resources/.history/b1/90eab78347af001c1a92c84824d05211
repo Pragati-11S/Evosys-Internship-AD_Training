@@ -1,0 +1,52 @@
+package com.mastek.assignment;
+
+import java.util.Scanner;
+
+import com.mastek.assignment.demo.MenuApp;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		
+		MenuApp menu=new MenuApp();
+		try(Scanner sc=new Scanner(System.in)) {
+			
+			boolean isRunning = true;
+			
+			while(isRunning) {
+				System.out.println("Enter your choice : ");
+				System.out.println("1. Insert or Create Record");
+				System.out.println("2. Update Record");
+				System.out.println("3. Delete Record");
+				System.out.println("4. View Record");
+				System.out.println("5. Exit");
+				int choice=Integer.parseInt(sc.nextLine());
+				switch(choice) {
+				case 1:
+					menu.insertRecord(null);
+					System.out.println(choice);
+					break;
+				case 2:
+//					student.updateRecord();
+					System.out.println(choice);
+					break;
+				case 3:
+//					student.deleteRecord();
+					System.out.println(choice);
+					break;
+				case 4:
+//					student.viewRecord();
+					System.out.println(choice);
+					break;
+				case 5:
+					System.out.println("Thank You..");
+					isRunning=false;
+					break;
+				default :
+					System.out.println("Not a valid Choice");
+					break;
+				}
+			}
+		}
+	}
+}

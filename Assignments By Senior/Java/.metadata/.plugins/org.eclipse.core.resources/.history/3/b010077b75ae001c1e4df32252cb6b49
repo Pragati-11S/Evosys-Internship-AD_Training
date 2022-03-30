@@ -1,0 +1,41 @@
+package com.mastek.assignment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Scanner;
+
+public class StudentDatabase {
+	public static void main(String[] args) {
+		String url = "jdbc:oracle:thin:@//localhost:1521/xe";
+		String user = "c##aduser";
+		String password = "root";
+		Scanner sc=new Scanner(System.in);
+		StudentDatabase student=new StudentDatabase();
+		try {
+			Connection connection = DriverManager.getConnection(url, user, password);
+			System.out.println("Enter your choice : ");
+			System.out.println("1. Insert or Create Record");
+			int choice=Integer.parseInt(sc.nextLine());
+			switch(choice) {
+			case 1:
+				student.insertRecord();
+				break;
+			default :
+				break;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void insertRecord() {
+		System.out.println("Inside record method");
+	}
+}
+
+
+
+//if(connection!=null) {
+//	System.out.println("Connected to Database..");
+//	connection.close();
+//}

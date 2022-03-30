@@ -1,0 +1,17 @@
+HTML:
+
+Form
+Employee Name,
+Email (check format with regular expression (abc@gmail.com)),
+Phone Number (only number should be allowed, should not allow morethan 10 characters),
+Joining Date (date),
+Salary (only number should be allowed),
+Department (drop down with hardcoded values).
+
+
+Button: Submit
+
+On click of button click 
+submitted data should be visible below form in table structure. 
+
+

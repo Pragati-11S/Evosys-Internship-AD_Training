@@ -1,0 +1,53 @@
+package com.mastek.assignment;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+import com.mastek.assignment.MyConnection;
+
+public class PersonApp {
+	public static void main(String[] args) {
+		try {
+			Connection connection=MyConnection.getConnection();
+			BufferedReader lineReader = new BufferedReader(new FileReader("\"D:\\Evosys\\Senior Assignments\\Java\\JDBC_Assignment1\\src\\com\\mastek\\assignment\\employee.csv"));
+//			FileInputStream fin=new FileInputStream("\"D:\\Evosys\\Senior Assignments\\Java\\JDBC_Assignment1\\src\\com\\mastek\\assignment\\employee.csv");
+//			Scanner scanner=new Scanner(lineReader);
+			String query="INSERT INTO EmpSample VALUES(?,?,?,?,to_date(?,'DD-MM-YYYY'),?,?)";
+			PreparedStatement pst=connection.prepareStatement(query);
+			String lineText = null;
+            int count = 0;
+
+            String data[] = new String[7];
+            lineReader.readLine();
+            while ((lineText = lineReader.readLine()) != null) {
+				
+				data=(lineText.split(","));
+				pst.setString(1,data[0]);
+				pst.setString(2,data[1]);
+				pst.setString(3,data[2]);
+				pst.setString(4,data[3]);
+				pst.setString(5,data[4]);
+				pst.setString(6,data[5]);
+				pst.setString(7,data[6]);
+				
+				pst.addBatch();
+			}
+			pst.executeBatch();
+//			scanner.close();
+//			fin.close();
+			lineReader.close();
+			connection.close();
+		}
+		catch(SQLException e) {
+			System.out.println(e.getErrorCode()+" "+e.getMessage());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+

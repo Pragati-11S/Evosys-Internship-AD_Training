@@ -1,0 +1,82 @@
+package com.mastek.assignment.demo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.mastek.assignment.database.MyConnection;
+import com.mastek.assignment.database.QueryUtil;
+import com.mastek.assignment.model.Student;
+
+public class MenuApp {
+	MyConnection connection1 = new MyConnection();
+	Scanner sc=new Scanner(System.in);
+	public void insertRecord(Student student) throws SQLException{
+		try(Connection connection = connection1.getConnection();
+				PreparedStatement pst = connection.prepareStatement(QueryUtil.insertRecordQuery());
+				) {
+			pst.setString(1, student.getStudentName());
+			pst.setString(2, student.getEmail());
+			pst.setString(3, student.getAdmissionDate());
+			pst.setString(4, student.getStudyingClass());
+			pst.setString(5, student.getCity());
+			
+			int rows = pst.executeUpdate();
+			if(rows>0) {
+				System.out.println("Record Inserted successfully");
+			} else {
+				System.out.println("Record Insertion failed..");
+			}
+		}
+	}
+	
+	public void viewRecord() throws SQLException {
+		System.out.println("Enter your choice to view records : ");
+		System.out.println("1. View All Records");
+		System.out.println("2. Search & View Record by Student ID ");
+		System.out.println("3. Search & View Record by Student Name ");
+		int choice=Integer.parseInt(sc.nextLine());
+		switch(choice) {
+		case 1: 
+			try(Connection connection = connection1.getConnection();
+					Statement st=connection.createStatement();
+					ResultSet result = st.executeQuery(QueryUtil.viewRecordQuery1());) {
+				System.out.println("ID | Name | Email | Admission Date | Class | City");
+				while(result.next()) {
+					printStudent(new Student(result.getInt("StudentID"),result.getString("StudentName"),result.getString("Email"),result.getString("AdmissionDate"),result.getString("StudyingClass"),result.getString("City")));
+				}
+			}
+			break;
+			
+		case 2:
+			try(Connection connection = connection1.getConnection();
+					Statement st=connection.createStatement();
+					ResultSet result = st.executeQuery(QueryUtil.viewRecordQueryByID());) {
+				System.out.println("ID | Name | Email | Admission Date | Class | City");
+				while(result.next()) {
+					printStudent(new Student(result.getInt("StudentID"),result.getString("StudentName"),result.getString("Email"),result.getString("AdmissionDate"),result.getString("StudyingClass"),result.getString("City")));
+				}
+			}
+			break;
+			
+		case 3:
+			try(Connection connection = connection1.getConnection();
+					Statement st=connection.createStatement();
+					ResultSet result = st.executeQuery(QueryUtil.viewRecordQueryByName());) {
+				System.out.println("ID | Name | Email | Admission Date | Class | City");
+				while(result.next()) {
+					printStudent(new Student(result.getInt("StudentID"),result.getString("StudentName"),result.getString("Email"),result.getString("AdmissionDate"),result.getString("StudyingClass"),result.getString("City")));
+				}
+			}
+			break;
+		}
+		
+	}
+	
+	private void printStudent(Student student) {
+			System.out.println(student.getStudentID()+" | "+student.getStudentName()+" | "+student.getEmail()+" | "+student.getAdmissionDate()+" | "+student.getStudyingClass()+" | "+student.getCity());
+	}
+}
